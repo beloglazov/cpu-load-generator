@@ -1,4 +1,4 @@
-# cpu-load-generator -- a tool for generating a set of subsequent CPU utilization levels
+# cpu-load-generator – a tool for generating a set of subsequent CPU utilization levels
 
 This tools takes a file as an argument, which lists a set of CPU utilization levels as numbers in
 the [0.0, 1.0] range. The numbers in the file are separated by new lines. The tool also accepts a
@@ -12,5 +12,7 @@ http://www.devin.com/lookbusy/
 
 
 ## License
+
+The tool is released under the Apache 2.0 license
 
 Copyright (C) 2012 Anton Beloglazov
