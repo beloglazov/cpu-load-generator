@@ -17,10 +17,19 @@
 
 from optparse import OptionParser, Option, IndentedHelpFormatter
 import os
+import subprocess
+import time
 
 
-def process(interval, utilization):
-    pass
+def process(interval, utilization_list):
+    for utilization in utilization_list:
+        utilization_str = str(int(utilization * 100))
+        print "\nSwitching to " + utilization_str + "%"
+        p = subprocess.Popen(['lookbusy',
+                              '--ncpus', '1',
+                              '--cpu-util', utilization_str])
+        time.sleep(interval)
+        p.terminate()
 
 
 class PosOptionParser(OptionParser):
@@ -58,6 +67,11 @@ def main():
         usage='Usage: python %prog interval source',
         description='Generates a set of subsequent ' +
                     'CPU utilization levels read from a file. ' +
+                    'The tool is designed to generate the load ' +
+                    'on a single-core CPU. For multi-core CPUs, ' +
+                    'the specified CPU utilization is achieved as a sum ' +
+                    'of the utilization levels of every core. ' +
+                    '                                         ' +
                     'Copyright (C) 2012 Anton Beloglazov. ' +
                     'Released under Apache 2.0 license.')
     parser.add_positional_argument(
