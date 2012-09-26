@@ -12,6 +12,16 @@ load generator developed by Devin Carraway, released under the GPL license, and 
 http://www.devin.com/lookbusy/
 
 
+## Installation
+
+To use the tool, it is necessary to install the `lookbusy` program first. This can be done using the
+included `install-lookbusy.sh` script as follows (the installation requires the sudo password):
+
+```Shell
+./install-lookbusy.sh
+```
+
+
 ## Usage
 
 ```Shell
