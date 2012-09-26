@@ -21,12 +21,13 @@ import subprocess
 import time
 
 
-def process(interval, utilization_list):
+def process(interval, utilization_list, ncpus):
+    ncpus_str = str(ncpus)
     for utilization in utilization_list:
         utilization_str = str(int(utilization * 100))
         print "\nSwitching to " + utilization_str + "%"
         p = subprocess.Popen(['lookbusy',
-                              '--ncpus', '1',
+                              '--ncpus', ncpus_str,
                               '--cpu-util', utilization_str])
         time.sleep(interval)
         p.terminate()
@@ -64,25 +65,23 @@ class PosOptionParser(OptionParser):
 
 def main():
     parser = PosOptionParser(
-        usage='Usage: python %prog interval source',
+        usage='Usage: python %prog [options] INTERVAL SOURCE',
         description='Generates a set of subsequent ' +
                     'CPU utilization levels read from a file. ' +
-                    'The tool is designed to generate the load ' +
-                    'on a single-core CPU. For multi-core CPUs, ' +
-                    'the specified CPU utilization is achieved as a sum ' +
-                    'of the utilization levels of every core. ' +
                     '                                         ' +
                     'Copyright (C) 2012 Anton Beloglazov. ' +
                     'Released under Apache 2.0 license.')
     parser.add_positional_argument(
-        Option('--interval', action='store_true',
+        Option('--INTERVAL', action='store_true',
                help='interval between subsequent CPU ' +
                'utilization levels in seconds'))
     parser.add_positional_argument(
-        Option('--source', action='store_true',
+        Option('--SOURCE', action='store_true',
                help='source file containing a new line ' +
                'separated list of CPU utilization levels ' +
                'specified as floats in the [0, 1] range'))
+    parser.add_option('-n', '--ncpus', type='int', dest='ncpus', default=1,
+                      help='number of CPU cores to utilize [default: 1]')
 
     (options, args) = parser.parse_args()
 
@@ -116,7 +115,7 @@ def main():
     if interval <= 0:
         parser.error('interval must be an integer >= 0')
 
-    process(interval, utilization)
+    process(interval, utilization, options.ncpus)
 
 
 if __name__ == '__main__':
