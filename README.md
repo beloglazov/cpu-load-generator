@@ -24,20 +24,22 @@ included `install-lookbusy.sh` script as follows (the installation requires the 
 
 ## Usage
 
->Usage: python cpu-load-generator.py [options] INTERVAL SOURCE
->
->  Generates a set of subsequent CPU utilization levels read from a file.
->  Copyright (C) 2012 Anton Beloglazov. Released under Apache 2.0 license.
->
->  Options:
->    -h, --help          show this help message and exit
->    -n NCPUS, --ncpus=NCPUS
->                        number of CPU cores to utilize [default: 1]
->
->Positional Arguments:
->  INTERVAL  interval between subsequent CPU utilization levels in seconds
->  SOURCE    source file containing a new line separated list of CPU
->              utilization levels specified as floats in the [0, 1] range
+```
+Usage: python cpu-load-generator.py [options] INTERVAL SOURCE
+
+  Generates a set of subsequent CPU utilization levels read from a file.
+  Copyright (C) 2012 Anton Beloglazov. Released under Apache 2.0 license.
+
+  Options:
+    -h, --help          show this help message and exit
+    -n NCPUS, --ncpus=NCPUS
+                        number of CPU cores to utilize [default: 1]
+
+Positional Arguments:
+  INTERVAL  interval between subsequent CPU utilization levels in seconds
+  SOURCE    source file containing a new line separated list of CPU
+              utilization levels specified as floats in the [0, 1] range
+```
 
 
 ## Examples
