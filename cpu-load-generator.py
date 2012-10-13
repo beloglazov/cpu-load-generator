@@ -1,4 +1,4 @@
-# Copyright 2012 Anton Beloglazov
+# \Copyright 2012 Anton Beloglazov
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import time
 def process(interval, utilization_list, ncpus):
     ncpus_str = str(ncpus)
     for utilization in utilization_list:
-        utilization_str = str(int(utilization * 100))
+        utilization_str = str(utilization)
         print "\nSwitching to " + utilization_str + "%"
         p = subprocess.Popen(['lookbusy',
                               '--ncpus', ncpus_str,
@@ -104,13 +104,16 @@ def main():
         if line.strip():
             try:
                 n = float(line)
-                if n < 0 or n > 1:
+                if n < 0 or n > 100:
                     raise ValueError
-                utilization.append(n)
+                if n < 1:
+                    n *= 100
+                utilization.append(int(n))
             except ValueError:
                 parser.error('the source file must only ' +
                              'contain new line separated ' +
-                             'floats in the [0, 1] range')
+                             'floats in the [0, 1] range ' +
+                             'or integers in the [0, 100] range')
 
     if interval <= 0:
         parser.error('interval must be an integer >= 0')
