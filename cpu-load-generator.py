@@ -1,4 +1,4 @@
-# \Copyright 2012 Anton Beloglazov
+# Copyright 2012 Anton Beloglazov
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -79,7 +79,7 @@ def main():
         Option('--SOURCE', action='store_true',
                help='source file containing a new line ' +
                'separated list of CPU utilization levels ' +
-               'specified as floats in the [0, 1] range'))
+               'specified as numbers in the [0, 100] range'))
     parser.add_option('-n', '--ncpus', type='int', dest='ncpus', default=1,
                       help='number of CPU cores to utilize [default: 1]')
 
@@ -106,14 +106,11 @@ def main():
                 n = float(line)
                 if n < 0 or n > 100:
                     raise ValueError
-                if n < 1:
-                    n *= 100
                 utilization.append(int(n))
             except ValueError:
                 parser.error('the source file must only ' +
                              'contain new line separated ' +
-                             'floats in the [0, 1] range ' +
-                             'or integers in the [0, 100] range')
+                             'numbers in the [0, 100] range')
 
     if interval <= 0:
         parser.error('interval must be an integer >= 0')

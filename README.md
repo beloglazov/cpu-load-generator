@@ -1,11 +1,12 @@
 # cpu-load-generator – a tool for generating a set of subsequent CPU utilization levels
 
-This tools takes a file as an argument, which lists a set of CPU utilization levels as floating
-point numbers in the [0, 1] range. The numbers in the file should be separated by new lines. The
-tool accepts another parameter specifying the required time interval between two subsequent CPU
-utilization levels. Then, cpu-load-generator goes through the sequence of the CPU utilization levels
-and generates each CPU utilization level for the specified time interval. The tool also accepts an
-optional parameter that sets the number of CPU cores to utilizes, which defaults to 1.
+This tools takes a file as an argument, which lists a set of CPU utilization levels as numbers in
+the [0, 100] range representing percentages. The numbers in the file should be separated by new
+lines. The tool accepts another parameter specifying the required time interval between two
+subsequent CPU utilization levels. Then, cpu-load-generator goes through the sequence of the CPU
+utilization levels and generates each CPU utilization level for the specified time interval. The
+tool also accepts an optional parameter that sets the number of CPU cores to utilizes, which
+defaults to 1.
 
 Internally, to create each CPU utilization level cpu-load-generator calls the `lookbusy` synthetic
 load generator developed by Devin Carraway, released under the GPL license, and available from
@@ -38,7 +39,7 @@ Usage: python cpu-load-generator.py [options] INTERVAL SOURCE
 Positional Arguments:
   INTERVAL  interval between subsequent CPU utilization levels in seconds
   SOURCE    source file containing a new line separated list of CPU
-              utilization levels specified as floats in the [0, 1] range
+              utilization levels specified as numbers in the [0, 100] range
 ```
 
 
