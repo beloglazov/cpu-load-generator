@@ -14,13 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-wget http://www.devin.com/lookbusy/download/lookbusy-1.3.tar.gz
-tar -xzf lookbusy-1.3.tar.gz
-cd lookbusy-1.3
+wget http://www.devin.com/lookbusy/download/lookbusy-1.4.tar.gz
+tar -xzf lookbusy-1.4.tar.gz
+cd lookbusy-1.4
 ./configure
 make
 sudo make install
 cd ../
-rm -rf lookbusy-1.3*
+rm -rf lookbusy-1.4*
 echo
 echo 'Done!'
